@@ -36,19 +36,18 @@ body {
   border-radius: 12px;
 
   /* BUG */
-  position: relative;
-  left: -15px;
+  /*changed the position from -15 */
 }
 
 button {
   padding: 8px;
   background: #3b82f6;
-  color: #3b82f6; /* BUG */
+  color: white; /* BUG */ /*changed colour from blue to white for better visibility */
 }
 
 button:hover {
   background: white;
-  color: white;
+  color: black;
 }
 
 .center-box {
@@ -60,7 +59,7 @@ button:hover {
 }
 
 .center-box h2 {
-  color: #f8fafc; /* BUG */
+  color: black; /* BUG */  /*changed colour from white to black for better visibility */
 }
 
 input {
