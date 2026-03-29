@@ -20,7 +20,10 @@ let orders = [];
 app.post("/api/user/register", (req, res) => {
   const { username, password } = req.body;
   if (!username) return res.json({ success: false });
-  USERS.push({ username, password }); // BUG
+  if(typeof username=='string' && typeof password=='string' ){
+    res.json({success:false});
+  }
+  USERS.push({ username, password }); // BUG   input validated
   res.json({ success: true });
 });
 
@@ -42,7 +45,13 @@ app.post("/api/admin/login", (req, res) => {
 app.get("/api/products", (req, res) => res.json(products));
 
 app.post("/api/products", (req, res) => {
-  products.push({ id: Date.now(), ...req.body }); // BUG
+  const { name, price } = req.body;
+ if (!name) return res.json({ success: false });
+ if (!price) return res.json({ success: false });
+  if(typeof name=='string' && typeof price=='number' ){
+    res.json({success:false});
+  }
+  products.push({ id: Date.now(), ...req.body }); // BUG input validated
   res.json({ success: true });
 });
 

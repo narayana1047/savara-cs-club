@@ -3,15 +3,33 @@
 <body>
 
 <h2>Admin</h2>
+<div id="list"></div>
 
 <script src="../js/app.js"></script>
 
 <script>
-check("admin");
+checkAdmin("admin");
 
-fetch("http://localhost:5000/api/products") <!--endpoint fix-->
-.then(r => r.json())
-.then(d => document.body.innerHTML += d.length);
+// fetch("http://localhost:5000/api/products") <!--endpoint fix-->
+// .then(r => r.json())
+// .then(d => document.body.innerHTML += d.length);
+async function handle(){
+    const res = await fetch(API + "/api/products");
+  const data = await res.json();
+
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  data.forEach(p => {
+    list.innerHTML += `
+      <div class="product">
+        <h4>${p.name}</h4>
+        <p>₹${p.price}</p>
+      </div>
+    `;
+  });
+}
+handle();
 </script>
 
 </body>

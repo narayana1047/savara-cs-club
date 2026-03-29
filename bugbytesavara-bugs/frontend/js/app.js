@@ -22,6 +22,9 @@ async function userLogin() {
 
 /* REGISTER */
 async function register() {
+  if(typeof username.value=='string' && typeof password.value=='string' ){
+    return;
+  }
   await fetch(API + "/api/user/register", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
@@ -46,7 +49,7 @@ async function loadProducts() {
     list.innerHTML += `
       <div class="product">
         <h4>${p.name}</h4>
-        <p>₹${p.price * 2}</p>
+        <p>₹${p.price}</p> //price fix
         <button onclick="addToCart(${p.id}, '${p.name}', ${p.price})">Cart</button>
       </div>
     `;

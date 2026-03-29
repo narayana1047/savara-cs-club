@@ -8,17 +8,24 @@
 <div class="content">
 <h2>Cart</h2>
 
-<p>Your cart is empty</p>
+<p></p>
 
 <div id="cartItems"></div>
 </div>
 
 <script>
 const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-cart.forEach(i => {
-  document.body.innerHTML += i.name + " ₹" + (i.price + 50);
-});
+cart.forEach(p => {
+    cartItems.innerHTML += `
+      <div class="product">
+        <h4>${p.name}</h4>
+        <p>₹${p.price * 2}</p>
+      </div>
+    `;
+  });
+  if(cart.length===0){
+    p.innerHTML+= "cart is empty"
+  }
 </script>
 
 </body>

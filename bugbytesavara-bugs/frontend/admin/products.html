@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <body>
-<div id="list"></div>
-<input id="name" placeholder="Enter ID" value=id></input>
-<input id="price" value=price></input>
+<input id="na" placeholder="Enter name"></input>
+<input id="price"></input>
 
 <button onclick=addProduct()>Add</button>
 
@@ -11,11 +10,19 @@
 
 <script src="../js/app.js"></script>
 <script>
-let id;
-let price
-check("admin");
+checkAdmin("admin");
 loadProducts();
-
+async function addProduct() {
+    const res = await fetch(API + "/api/products", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      name: na.value,
+      price: price.value
+    })
+    });
+    loadProducts();
+    }
 </script>
 
 </body>
